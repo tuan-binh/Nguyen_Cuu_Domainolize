@@ -21,6 +21,8 @@
 5. [PHẦN 4: Quản lý Nguồn lực, Tài sản và Văn bản Lưu trữ số (Resource, Asset & DMS)](#5-phần-4-quản-lý-nguồn-lực-tài-sản-và-văn-bản-lưu-trữ-số-resource-asset--dms)
 6. [PHẦN 5: Quản lý Phê duyệt, Chữ ký số và Trung tâm Điều hành (Approval & Executive Cockpit)](#6-phần-5-quản-lý-phê-duyệt-chữ-ký-số-và-trung-tâm-điều-hành-approval--executive-cockpit)
 7. [Tổng kết Đại cảnh: Kịch bản Liên thông End-to-End & Lộ trình Chuyển đổi số](#7-tổng-kết-đại-cảnh-kịch-bản-liên-thông-end-to-end--lộ-trình-chuyển-đổi-số)
+8. [Bản đồ Quy hoạch các Ứng dụng Doanh nghiệp Phổ biến & Phương án Lựa chọn (Application Landscape & Tech Stack Plan)](#8-bản-đồ-quy-hoạch-các-ứng-dụng-doanh-nghiệp-phổ-biến--phương-án-lựa-chọn-enterprise-application-landscape--tech-stack-plan)
+9. [Khảo sát Thực tế Doanh nghiệp: Phương pháp, Bộ công cụ Bảng hỏi và Chẩn đoán Hiện trạng (As-Is Assessment)](#9-khảo-sát-thực-tế-doanh-nghiệp-phương-pháp-bộ-công-cụ-bảng-hỏi-và-chẩn-đoán-hiện-trạng-as-is-assessment)
 
 ---
 
@@ -472,3 +474,308 @@ Bảng dưới đây minh chứng cách một thương vụ thực tế (**Cung 
 8. **Bảo mật đa lớp ngay từ kiến trúc cốt lõi (Security by Design):** Phân quyền RBAC & Data-level, ẩn số điện thoại khách hàng (*Data Masking*) + *Click-to-Call*, khóa xuất Excel, đóng dấu chìm động (*Dynamic Watermark*) tên người xem trên tài liệu mật, xác thực ký số bằng Sinh trắc học (*FaceID/Device Binding*), xóa trắng ổ cứng trước khi thanh lý máy và sao lưu kho dữ liệu theo chuẩn **3-2-1**.
 9. **Triển khai theo lộ trình từng bước vững chắc ("Bò – Đi – Chạy – Bay" / Crawl – Walk – Run – Fly):** Bắt đầu từ các *Thắng lợi ngắn hạn (Quick Wins)* có tần suất cao, quy tắc rõ (như Phê duyệt đề xuất nội bộ, Giao việc phòng ban, Đặt phòng họp/Dán QR tài sản, Quản lý Pipeline Sales & Tổng đài VoIP), có giai đoạn chạy thử nghiệm KPI (*Shadow Run* 1 quý) để hiệu chỉnh định mức trước khi gắn chính thức vào Lương 3P.
 10. **Xây dựng văn hóa An toàn tâm lý và Cải tiến liên tục (Psychological Safety & Kaizen):** Dùng dữ liệu đỏ/vàng trên Dashboard để tìm điểm nghẽn quy trình và tháo gỡ rào cản (*Blocked*) sớm ngay trong tuần, thay vì dùng số liệu như cây gậy trừng phạt làm nhân viên che giấu vấn đề.
+
+---
+
+## 8. BẢN ĐỒ QUY HOẠCH CÁC ỨNG DỤNG DOANH NGHIỆP PHỔ BIẾN & PHƯƠNG ÁN LỰA CHỌN (ENTERPRISE APPLICATION LANDSCAPE & TECH STACK PLAN)
+
+Trên thị trường hiện nay, các phần mềm phục vụ hệ thống **Quản trị doanh nghiệp và vận hành (Enterprise Management)** được phân chia theo **2 trường phái kiến trúc cốt lõi**:
+1. **Trường phái "Tổng thể Hợp nhất" (All-in-One Enterprise Management Suites):** Một nền tảng duy nhất cung cấp trọn gói cả 5 phân hệ, dùng chung cơ sở dữ liệu nhân sự và tài khoản đăng nhập.
+2. **Trường phái "Chuyên biệt Tốt nhất từng Mảng" (Best-of-Breed Applications):** Lựa chọn phần mềm chuyên sâu số 1 thế giới ở từng khâu riêng lẻ rồi kết nối với nhau qua API hoặc nền tảng tích hợp trung gian (**iPaaS** như *Zapier, Make, n8n, MuleSoft, Power Automate*).
+
+```mermaid
+flowchart TB
+    subgraph ALL_IN_ONE["1. TRƯỜNG PHÁI TỔNG THỂ HỢP NHẤT (ALL-IN-ONE SUITES)"]
+        direction LR
+        VN_AIO["Nền tảng Nội địa Việt Nam:\n• Base.vn (Micro-apps)\n• MISA AMIS (ERP + Quản trị)\n• 1Office (All-in-One DB)\n• FastWork (Vận hành & Hiện trường)"]
+        INT_AIO["Nền tảng Quốc tế / Đa năng:\n• Lark Suite (Super-App Workspace)\n• Odoo (Open-source ERP & Ops)\n• Bitrix24 (Collaboration & CRM)"]
+    end
+
+    subgraph BEST_OF_BREED["2. TRƯỜNG PHÁI CHUYÊN BIỆT TỪNG MẢNG (BEST-OF-BREED)"]
+        direction LR
+        B1["PHẦN 1 (BPM & RPA):\nCamunda 8, Bizagi, Appian,\nServiceNow, UiPath, Celonis"]
+        B2["PHẦN 2 (Task, Project & KPI):\nJira, Asana, Monday, ClickUp,\nTrello, MS Project, Lattice, Profit.co"]
+        B3["PHẦN 3 (CRM & Đa kênh):\nSalesforce, HubSpot, Zoho, Pipedrive,\nZendesk, Getfly, Bizfly, SlimCRM"]
+        B4["PHẦN 4 (Tài sản & Văn bản):\nIBM Maximo, SpeedMaint, Snipe-IT,\nSharePoint, Confluence, Notion, vOffice"]
+        B5["PHẦN 5 (Ký số CA & CEO BI):\nDocuSign, Viettel MySign, VNPT SmartCA,\nFPT.eContract, MISA WeSign, Power BI"]
+    end
+
+    ALL_IN_ONE ---|"Đánh đổi: Tính liền mạch dữ liệu nội địa vs. Độ sâu tính năng chuyên ngành"| BEST_OF_BREED
+```
+
+---
+
+### 8.1. Trường phái 1: Các Nền tảng Quản trị Doanh nghiệp Tổng thể Hợp nhất (All-in-One Suites)
+
+Đây là nhóm giải pháp được các doanh nghiệp vừa và lớn (SME & Mid-market) tại Việt Nam ưu tiên lựa chọn hàng đầu vì giải quyết triệt để bài toán **liên thông dữ liệu từ Quy trình (Phần 1) $\rightarrow$ Dự án & Bảng tính điểm KPI Lương 3P (Phần 2) $\rightarrow$ CRM (Phần 3) $\rightarrow$ Tài sản/Công văn (Phần 4) $\rightarrow$ Phê duyệt & Ký số CA (Phần 5)**:
+
+| Tên Nền tảng | Kiến trúc & Định vị cốt lõi | Hệ sinh thái các phân hệ tương ứng với 5 Phần | Đối tượng doanh nghiệp phù hợp nhất |
+| :--- | :--- | :--- | :--- |
+| **1. Base.vn** *(Việt Nam)* | **Kiến trúc Vi ứng dụng (Micro-apps):** Hơn 50 ứng dụng chuyên sâu tách rời theo từng nghiệp vụ nhưng dùng chung 1 tài khoản (SSO) và kết nối sẵn qua API nội bộ. | • **Phần 1:** *Base Workflow* (Quy trình liên phòng ban)<br>• **Phần 2:** *Base Wework* (Dự án & Task), *Base Goal* (KPI & OKR)<br>• **Phần 3:** *Base CRM / Sales*<br>• **Phần 4:** *Base Asset* (Tài sản QR), *Base Booking* (Phòng họp/Xe), *Base Office* (Công văn), *Base Info* (Tri thức)<br>• **Phần 5:** *Base Request* (Phê duyệt đề xuất), *Base Sign* (Ký số), *Base Inside* (Truyền thông điều hành). | Doanh nghiệp tư nhân từ 50 – 1.000 nhân sự muốn hiện đại hóa quản trị quy trình, giao việc và phê duyệt theo tư duy quản trị chuẩn quốc tế. |
+| **2. MISA AMIS** *(Việt Nam)* | **Hệ sinh thái ERP – Tài chính – Quản trị hợp nhất:** Thế mạnh độc tôn xuất phát từ phần mềm Kế toán và Hóa đơn điện tử mở rộng ra toàn bộ vận hành. | • **Phần 1 & 5:** *AMIS Quy trình (OneWorkflow)*, *AMIS WeSign* (Ký số & eContract), *CEO Dashboard*<br>• **Phần 2:** *AMIS Công việc*, *AMIS Mục tiêu*<br>• **Phần 3:** *AMIS CRM* (Sale nhìn thấy ngay tồn kho thực tế và công nợ từ Kế toán MISA)<br>• **Phần 4:** *AMIS Tài sản* (đồng bộ 100% khấu hao TSCĐ/CCDC với sổ Kế toán), *AMIS Văn thư* (chuẩn Nghị định 30), *AMIS Phòng họp*, *AMIS Ghi chép (Wiki)*. | Doanh nghiệp coi trọng sự ăn khớp tuyệt đối giữa Vận hành – Thương mại với **Tài chính – Kế toán – Thuế – Ngân hàng điện tử (Open Banking)**. |
+| **3. 1Office** *(Việt Nam)* | **Kiến trúc All-in-One Thuần nhất:** Toàn bộ các phân hệ nằm trên duy nhất 1 cơ sở dữ liệu hợp nhất và 1 giao diện xuyên suốt. | • Bao phủ trọn vẹn: **1WORK (Công việc, Dự án Gantt/Kanban, Quy trình BPM) + 1CRM + 1HRM (Nhân sự, Chấm công, Lương 3P) + Tài sản + Văn bản/Công văn + Phê duyệt ký số**.<br>• *Điểm mạnh đặc thù:* Động cơ công thức **KPI tự động kéo dữ liệu** từ Task, Quy trình, CRM, Chấm công để tính điểm hiệu suất và đẩy thẳng sang **Bảng lương 3P** cuối tháng. | Doanh nghiệp Việt Nam muốn tự động hóa khép kín bài toán Giao việc – Quy trình – Chấm công – Đánh giá KPI gắn trực tiếp với Lương thưởng. |
+| **4. Lark Suite** *(Quốc tế hóa cao tại VN)* | **Siêu ứng dụng làm việc (Super-App Digital Workspace):** Hợp nhất Chat, Họp Video (Minutes AI), Docs/Wiki, Mail và Bảng dữ liệu đa chiều No-code. | • **Lark Base:** Nền tảng cơ sở dữ liệu No-code cực mạnh để tùy biến Quản lý Dự án, CRM Pipeline, Quản lý Tài sản và OKR/KPI kèm *Automation*<br>• **Lark Approval:** Thiết kế luồng phê duyệt DOA trên di động tốc độ cao<br>• **Lark Wiki & Docs:** Xây dựng Cổng tri thức nội bộ, quy trình SOP và cộng tác tài liệu thời gian thực. | Doanh nghiệp công nghệ, thương mại điện tử, chuỗi bán lẻ, agency cần tốc độ cộng tác cực nhanh trên di động và khả năng tự tùy biến linh hoạt. |
+| **5. FastWork / Odoo / Bitrix24** | • **FastWork (VN):** Nền tảng quản trị vận hành và đội ngũ hiện trường.<br>• **Odoo / Bitrix24 (Quốc tế):** Hệ thống ERP + CRM + Project mở. | • **FastWork:** Mạnh về chấm công FaceID/GPS, quản lý đội ngũ kinh doanh/kỹ thuật đi tuyến ngoài thị trường (*Field Force / DMS*), dự án thi công và tài sản QR.<br>• **Odoo:** Kho mô-đun mã nguồn mở/thương mại khổng lồ bao phủ từ CRM, Mua hàng, Kho, Sản xuất (MRP), Kế toán đến Dự án và Nhân sự. | • *FastWork:* Công ty xây dựng, kỹ thuật bảo trì, phân phối hàng tiêu dùng.<br>• *Odoo:* Doanh nghiệp sản xuất/thương mại có đội ngũ IT/Đối tác triển khai tùy biến sâu. |
+
+---
+
+### 8.2. Trường phái 2: Các Ứng dụng Chuyên biệt Tốt nhất từng Mảng (Best-of-Breed Applications)
+
+Khi doanh nghiệp có yêu cầu nghiệp vụ chuyên sâu ở một lĩnh vực cụ thể hoặc ở quy mô tập đoàn đa quốc gia, các ứng dụng chuyên biệt dưới đây là tiêu chuẩn vàng trong từng phân hệ:
+
+#### A. Nhóm Ứng dụng cho PHẦN 1: Quản lý Quy trình, Tự động hóa & Khai phá quy trình (BPM, RPA & Process Mining)
+| Phân nhóm công nghệ | Ứng dụng phổ biến nhất | Thế mạnh cốt lõi & Trường hợp sử dụng |
+| :--- | :--- | :--- |
+| **1. Nền tảng BPMS & Workflow Engine chuyên sâu** | **Camunda (Camunda 8)**, **Bizagi**, **Appian**, **Pega**, **ServiceNow**, **Flowable** | Tuân thủ chặt chẽ chuẩn quốc tế **BPMN 2.0 & DMN**; khả năng điều phối quy trình phức tạp (*Process Orchestration*) kết hợp giữa con người, hệ thống microservices qua API và tác tử AI (*Agentic AI*); chịu tải hàng triệu giao dịch (ngân hàng, bảo hiểm, viễn thông). |
+| **2. Tự động hóa quy trình trong Hệ sinh thái Văn phòng** | **Microsoft Power Automate & Power Apps**, **Google AppSheet** | Nền tảng Low-code/No-code giúp nhân viên nghiệp vụ (*Citizen Developers*) tự tạo biểu mẫu và luồng phê duyệt/tự động hóa nối với SharePoint, Teams, Outlook, Excel. |
+| **3. Tự động hóa bằng Robot phần mềm (RPA)** | **UiPath**, **Automation Anywhere**, **Blue Prism**, **Power Automate Desktop** | Sử dụng "nhân viên robot ảo" thao tác trên giao diện màn hình để tự động đọc hóa đơn, nhập liệu, đối chiếu dữ liệu giữa các phần mềm thế hệ cũ (*Legacy Systems*) không có cổng kết nối API. |
+| **4. Khai phá & Trí tuệ quy trình (Process Mining / Intelligence)** | **Celonis**, **SAP Signavio**, **UiPath Process Mining**, **PM4Py** *(Open-source)* | Kết nối vào nhật ký sự kiện (*Event Logs*) của ERP/CRM để tự động dựng lại bức tranh quy trình thực tế (As-Is), phát hiện các vòng lặp làm lại, kiểm tra độ tuân thủ (*Conformance Checking*) và chỉ ra nút thắt cổ chai bằng dữ liệu khách quan. |
+
+#### B. Nhóm Ứng dụng cho PHẦN 2: Quản lý Công việc, Dự án & Mục tiêu KPI/OKR
+| Phân nhóm công nghệ | Ứng dụng phổ biến nhất | Thế mạnh cốt lõi & Trường hợp sử dụng |
+| :--- | :--- | :--- |
+| **1. Quản lý Công việc & Cộng tác nhóm (CWM)** | **Trello**, **Asana**, **Monday.com**, **ClickUp**, **Notion** | • **Trello:** Bảng Kanban trực quan, học 10 phút dùng được ngay.<br>• **Asana & Monday.com:** Điều phối công việc liên phòng ban mượt mà, đa góc nhìn (List, Board, Timeline, Workload) và nối từ Mục tiêu (Goals) xuống Dự án.<br>• **ClickUp:** Tích hợp dày đặc cả Task, Sprint, Gantt, Docs, Whiteboard, OKR trong một ứng dụng. |
+| **2. Quản lý Dự án Agile / Scrum & Phát triển sản phẩm** | **Atlassian Jira**, **Linear**, **Azure DevOps**, **GitLab** | Tiêu chuẩn số 1 cho đội ngũ CNTT và R&D vận hành theo **Scrum / Kanban**: quản lý *Product Backlog, User Story, Sprint, Story Points, Velocity Chart, Burndown Chart, Cumulative Flow Diagram (CFD)* và theo dõi lỗi (*Issue/Bug Tracking*). |
+| **3. Quản lý Dự án Truyền thống & Kỹ thuật – Xây dựng (PPM)** | **Microsoft Project**, **Oracle Primavera P6**, **Smartsheet**, **OpenProject** | Đỉnh cao của trường phái **Waterfall / Hybrid**: phân rã WBS sâu, thiết lập 4 kiểu phụ thuộc (FS, SS, FF, SF), tự động tính **Đường găng (CPM)**, quản lý nhiều **Đường cơ sở (Baselines)**, cân bằng nguồn lực và tính toán **Giá trị thu được (EVM: PV, EV, AC, SPI, CPI)**. |
+| **4. Quản trị Mục tiêu OKR & Đánh giá hiệu suất (PMS)** | **Profit.co**, **Lattice**, **Perdoo**, **Workday**, **SuccessFactors** | Chuyên sâu về vẽ Bản đồ chiến lược **BSC**, Cây mục tiêu **OKR**, Từ điển KPI, nhịp Check-in tuần (PPP), họp 1-on-1, đánh giá đa chiều 360 độ và hội đồng hiệu chỉnh **Calibration (9-Box Grid)**. |
+
+#### C. Nhóm Ứng dụng cho PHẦN 3: Quản lý Quan hệ Khách hàng (CRM, Tổng đài VoIP & Đa kênh)
+| Phân nhóm công nghệ | Ứng dụng phổ biến nhất | Thế mạnh cốt lõi & Trường hợp sử dụng |
+| :--- | :--- | :--- |
+| **1. Enterprise CRM (Cấp Tập đoàn)** | **Salesforce** *(Sales/Service/Marketing Cloud)*, **Microsoft Dynamics 365**, **SAP CX** | Thị phần số 1 thế giới; khả năng tùy biến kiến trúc dữ liệu vô hạn, bảo mật cấp tập đoàn, hệ sinh thái *AppExchange* và trợ lý AI *Einstein / Agentforce*. |
+| **2. All-round Mid-market CRM (Toàn diện cho SME & Tăng trưởng)** | **HubSpot CRM**, **Zoho CRM**, **Freshsales (Freshworks)** | • **HubSpot:** Cha đẻ mô hình **Bánh đà (Flywheel)** và Inbound Marketing; giao diện cực kỳ thân thiện, nối liền mạch Marketing Automation sang Sales Pipeline.<br>• **Zoho CRM:** Đầy đủ tính năng (Lead, Deal, CPQ, Blueprint, Omnichannel, AI Zia) với chi phí tối ưu nhất cho doanh nghiệp châu Á. |
+| **3. Sales-focused Pipeline CRM (Tinh gọn cho đội Sale B2B)** | **Pipedrive**, **Close CRM** *(Quốc tế)*; **Getfly CRM**, **SlimCRM** *(Việt Nam)* | Tập trung 100% vào bảng **Kanban Sales Pipeline** và hoạt động gọi điện/nhắc lịch (*Activity-based Selling*); tỷ lệ nhân viên Sale đón nhận sử dụng cao nhất. |
+| **4. Service Helpdesk (Ticketing) & Conversational / B2C CRM** | **Zendesk**, **Freshdesk**, **Intercom** *(Quốc tế)*; **Bizfly CRM**, **Pancake**, **Haravan**, **KiotViet** *(Việt Nam)* | • **Zendesk/Freshdesk:** Chuyên hệ thống **Ticketing sau bán hàng**, đếm đồng hồ SLA (FRT & Resolution Time), Knowledge Base và Customer Portal.<br>• **Bizfly/Pancake/Haravan:** Chuyên gom tin nhắn/đơn hàng đa kênh (**Omnichannel**: Facebook, Zalo OA/ZNS, TikTok Shop, Shopee, POS cửa hàng), Chatbot AI và phân nhóm **RFM** tự động. |
+| **5. Hạ tầng Tổng đài ảo (Cloud PBX/CTI) & Nền tảng dữ liệu (CDP)** | • *Tổng đài VoIP VN:* **Stringee**, **Omicall**, **CareSoft**, **FPT Oncall**<br>• *CDP:* **Insider**, **Segment**, **PangoCDP** | Tích hợp **Click-to-Call**, **Pop-up hồ sơ khách hàng 360** khi đổ chuông, tự động lưu file ghi âm và dùng AI chuyển giọng nói thành văn bản tóm tắt BANT/SPIN. |
+
+#### D. Nhóm Ứng dụng cho PHẦN 4: Quản lý Nguồn lực, Tài sản & Văn bản Lưu trữ số
+| Phân nhóm công nghệ | Ứng dụng phổ biến nhất | Thế mạnh cốt lõi & Trường hợp sử dụng |
+| :--- | :--- | :--- |
+| **1. Quản lý Tài sản Công nghiệp & Bảo trì (EAM / CMMS)** | **IBM Maximo**, **SAP EAM**, **UpKeep**, **Fiix** *(Quốc tế)*; **SpeedMaint** *(Việt Nam)* | Quản trị tài sản và bảo trì máy móc nhà máy/tòa nhà theo chuẩn **ISO 55000 & TPM**: lập lịch bảo trì phòng ngừa (theo ngày hoặc chỉ số vận hành/Odometer), quét QR báo hỏng, quản lý kho vật tư phụ tùng và đo lường tự động **MTBF, MTTR, OEE**. |
+| **2. Quản lý Tài sản CNTT & Bản quyền phần mềm (ITAM / SAM)** | **ServiceNow ITAM**, **ManageEngine AssetExplorer**, **Snipe-IT** *(Mã nguồn mở)* | • **ManageEngine / ServiceNow:** Có Agent tự động quét mạng nội bộ phát hiện cấu hình phần cứng máy tính, phần mềm cài đặt và bản đồ phụ thuộc **CMDB**.<br>• **Snipe-IT:** Giải pháp mã nguồn mở miễn phí tốt nhất thế giới để quản lý Laptop, Màn hình, License phần mềm và in tem **QR Code** bàn giao/kiểm kê. |
+| **3. Văn thư Hành chính Điện tử (e-Office chuẩn Nghị định 30)** | **Viettel vOffice**, **VNPT iOffice**, **FPT.eOffice**, **Lạc Việt SurePortal** | Chuẩn mực cho khối Cơ quan Nhà nước, Tổng công ty và Tập đoàn lớn tại Việt Nam: quản lý Sổ Công văn đến, Công văn đi, Bút phê lãnh đạo bằng bút cảm ứng trên iPad, kết nối Trục liên thông văn bản quốc gia và đóng dấu chữ ký số SIM PKI / USB Token. |
+| **4. Kho Lưu trữ Tài liệu số (DMS/ECM) & Cổng Tri thức (Wiki)** | • *DMS/ECM:* **Microsoft SharePoint**, **Google Drive**, **DocuWare**, **M-Files**, **OpenKM**<br>• *Corporate Wiki:* **Atlassian Confluence**, **Notion** | • **SharePoint / DocuWare / M-Files:** Quản lý vòng đời tài liệu, kiểm soát phiên bản (*Version Control*), quét **OCR / IDP**, khóa xóa theo thời hạn bảo quản (**ISO 15489**).<br>• **Confluence / Notion:** Xây dựng Cổng tri thức nội bộ theo mô hình **SECI** tích hợp **Trợ lý AI RAG** hỏi – đáp quy chế tự nhiên. |
+
+#### E. Nhóm Ứng dụng cho PHẦN 5: Quản lý Phê duyệt, Chữ ký số pháp lý (CA) & Điều hành (CEO Cockpit)
+| Phân nhóm công nghệ | Ứng dụng phổ biến nhất | Thế mạnh cốt lõi & Trường hợp sử dụng |
+| :--- | :--- | :--- |
+| **1. Chữ ký điện tử Quốc tế & Quản lý Hợp đồng (CLM)** | **DocuSign**, **Adobe Acrobat Sign**, **PandaDoc** | Tiêu chuẩn toàn cầu (tuân thủ *eIDAS* Châu Âu & *ESIGN* Hoa Kỳ) để ký kết các hợp đồng thương mại quốc tế xuyên biên giới. |
+| **2. Hạ tầng Chữ ký số từ xa (Remote Signing / Cloud CA) tại Việt Nam** | **Viettel MySign (Viettel-CA)**, **VNPT SmartCA**, **FPT-CA Cloud**, **MISA eSign**, **BKAV-CA** | Được Bộ Thông tin & Truyền thông cấp phép theo **Luật Giao dịch điện tử 2023 & Nghị định 130/2018**: lưu khóa trên Cloud HSM, cho phép Giám đốc **ký số pháp lý ngay trên điện thoại bằng FaceID/Vân tay trong 5 giây** mà không cần cắm USB Token. |
+| **3. Nền tảng Hợp đồng điện tử được chứng thực (CeCA Việt Nam)** | **FPT.eContract**, **Viettel vContract**, **MISA AMIS WeSign**, **VNPT eContract** | Được Bộ Công Thương cấp phép kết nối Trục phát triển hợp đồng điện tử Việt Nam; hỗ trợ luồng trình duyệt hợp đồng nội bộ nối tiếp gửi link cho khách hàng/đối tác bên ngoài ký số đối ứng. |
+| **4. Họp không giấy tờ (e-Cabinet) & Trung tâm chỉ huy (CEO Cockpit BI)** | • *Họp HĐQT/Ban GĐ:* **VNPT e-Cabinet**, **Viettel e-Cabinet**, **Diligent Boards**<br>• *Executive BI:* **Microsoft Power BI**, **Tableau**, **Looker** | Tổ chức các phiên họp điều hành trên máy tính bảng kèm biểu quyết trực tiếp (*Live Voting*); tổng hợp dữ liệu thời gian thực từ cả 5 phần lên màn hình **CEO Cockpit** có khả năng khoan sâu 3 tầng (*Drill-down*) và hỏi đáp dữ liệu bằng AI (*Conversational BI*). |
+
+---
+
+### 8.3. Kế hoạch Khuyến nghị 3 Phương án Tổ hợp Ứng dụng (Recommended Tech Stack Plans) theo Mô hình Doanh nghiệp
+
+Để áp dụng trực tiếp vào thực tế tư vấn hoặc triển khai cho doanh nghiệp, dưới đây là **3 Phương án Kiến trúc Ứng dụng** tối ưu nhất về chi phí (TCO) và hiệu quả vận hành:
+
+#### Phương án 1: Mô hình Doanh nghiệp SME & Mid-Market tại Việt Nam (Từ 30 đến 500 nhân sự — Điển hình như "Công ty A" trong Báo cáo)
+* **Mục tiêu ưu tiên:** Dữ liệu liền mạch 100% giữa 5 phần, dễ sử dụng cho nhân viên phi kỹ thuật, tuân thủ kế toán/pháp lý Việt Nam, tự động tính điểm KPI gắn Lương 3P và chi phí hợp lý.
+* **Kiến trúc Tổ hợp Ứng dụng (Tech Stack):**
+  1. **Nền tảng Lõi (Bao phủ cả 5 Phần):** Chọn 1 trong 3 nền tảng **All-in-One nội địa**: **MISA AMIS** (nếu ưu tiên liên thông sâu với Kế toán – Tài chính – Kho) HOẶC **1Office** (nếu ưu tiên tự động hóa chuỗi Giao việc – Quy trình – CRM – Chấm KPI – Lương 3P trên 1 màn hình) HOẶC **Base.vn** (nếu ưu tiên chuẩn hóa sâu Quy trình *Base Workflow*, Phê duyệt *Base Request* và Dự án *Base Wework*).
+  2. **Tích hợp Mở rộng cho CRM (Phần 3):** Đấu nối **Tổng đài ảo VoIP (Stringee / Omicall)** + **Zalo OA & Zalo ZNS** trực tiếp vào CRM để gọi *Click-to-Call* lưu ghi âm và gửi tin nhắn khảo sát CSAT tự động.
+  3. **Tích hợp Pháp lý cho Phê duyệt (Phần 5):** Tích hợp API **Chữ ký số từ xa Cloud CA (Viettel MySign / VNPT SmartCA / MISA eSign)** để Giám đốc ký số hợp đồng và công văn bằng FaceID ngay trên App di động.
+
+#### Phương án 2: Mô hình Doanh nghiệp Công nghệ, Sản phẩm số, Thương mại điện tử hoặc Dịch vụ Hiện đại
+* **Mục tiêu ưu tiên:** Tốc độ cộng tác thời gian thực trên di động, phát triển sản phẩm theo chuẩn Agile/Scrum, tự động hóa linh hoạt (No-code) và quản trị mục tiêu theo OKR.
+* **Kiến trúc Tổ hợp Ứng dụng (Tech Stack):**
+  1. **Không gian Làm việc, Phê duyệt & Tri thức (Phần 1, 4, 5):** **Lark Suite** (Dùng *Lark Approval* cho phê duyệt DOA di động; *Lark Wiki/Docs* cho quy chế & cổng tri thức; *Lark Base* cho điều phối nguồn lực).
+  2. **Quản lý Dự án Agile & Công việc (Phần 2):** **Atlassian Jira** hoặc **Linear / ClickUp** (cho đội phát triển sản phẩm chạy Sprint/Backlog) kết hợp **Lark Base** (cho theo dõi OKR/KPI).
+  3. **Quản lý Khách hàng (Phần 3):** **HubSpot CRM** hoặc **Pipedrive** (cho mảng B2B) / **Bizfly / Pancake** (cho mảng B2C đa kênh).
+  4. **Quản lý Tài sản CNTT (Phần 4):** **Snipe-IT** (quản lý cấp phát và kiểm kê QR Code toàn bộ Laptop, thiết bị và License phần mềm).
+
+#### Phương án 3: Mô hình Tập đoàn Lớn / Tổng Công ty Đa chi nhánh (Enterprise > 1.000 nhân sự)
+* **Mục tiêu ưu tiên:** Khả năng chịu tải cực lớn, kiểm soát nội bộ COSO/SoD nghiêm ngặt, bảo mật cấp tập đoàn, phân tích dữ liệu lớn (Big Data/BI) và khai phá quy trình tự động.
+* **Kiến trúc Tổ hợp Ứng dụng (Tech Stack):**
+  1. **Hạ tầng ERP & Tài sản (Nền tảng & Phần 4):** **SAP S/4HANA (SAP EAM)** hoặc **Microsoft Dynamics 365** kết hợp **IBM Maximo / SpeedMaint** (cho bảo trì nhà máy CMMS).
+  2. **Điều phối Quy trình, Văn thư & Phê duyệt (Phần 1, 4, 5):** **Camunda 8 / ServiceNow** (cho BPM & ITSM) + **Viettel vOffice / SharePoint + e-Cabinet + Cloud CA** (cho Văn thư Nghị định 30, Phê duyệt DOA, Ký số pháp nhân và Họp HĐQT không giấy tờ) + **UiPath (RPA)** & **Celonis (Process Mining)**.
+  3. **Quản lý Dự án & Hiệu suất (Phần 2):** **Microsoft Project / Primavera P6** (cho dự án đầu tư xây dựng/hạ tầng) + **Jira** (cho dự án CNTT) + **Workday / SuccessFactors** (cho HRM, BSC & KPI/OKR).
+  4. **Quản lý Khách hàng & Trung tâm Chỉ huy (Phần 3 & Phần 5):** **Salesforce CRM** + **CDP**; toàn bộ dữ liệu từ các hệ thống đổ về Kho dữ liệu (*Data Warehouse*) và hiển thị lên **Màn hình Trung tâm Chỉ huy CEO Cockpit trên Microsoft Power BI / Tableau**.
+
+---
+
+## 9. KHẢO SÁT THỰC TẾ DOANH NGHIỆP: PHƯƠNG PHÁP, BỘ CÔNG CỤ BẢNG HỎI VÀ CHẨN ĐOÁN HIỆN TRẠNG (AS-IS ASSESSMENT)
+
+Một dự án chuyển đổi số hoặc triển khai Hệ thống Quản trị Doanh nghiệp (*Enterprise Management*) thất bại thường không phải vì phần mềm kém, mà vì **khảo sát hiện trạng (As-Is Assessment) hời hợt**: chỉ nghe báo cáo từ một phía, bê nguyên quy trình giấy lạc hậu lên phần mềm (*"Số hóa sự hỗn loạn"*), hoặc bỏ qua các luồng tác nghiệp ngầm (*Shadow Workflows*) tại hiện trường. Chương này cung cấp trọn bộ phương pháp luận, quy trình thực địa, bộ câu hỏi phỏng vấn, bảng hỏi định lượng và khung chẩn đoán mức độ trưởng thành dành cho Chuyên gia Tư vấn / Đội dự án (BA / PMO / Ban Chuyển đổi số).
+
+---
+
+### 9.1. Quy trình Khảo sát 5 Bước và 6 Phương pháp Thu thập Thực địa (Nguyên tắc Tam giác Kiểm chứng – Triangulation)
+
+Để bóc tách được **"Sự thật vận hành"** chứ không phải **"Bức tranh màu hồng trên văn bản"**, đội khảo sát phải đối chiếu chéo 3 nguồn độc lập (**Nguyên tắc Tam giác Kiểm chứng – Triangulation**):
+1. **Quy trình trên giấy (Documented Process):** Quy chế, lưu đồ ISO, biểu mẫu ban hành chính thức.
+2. **Quy trình được kể (Perceived Process):** Lời kể của Lãnh đạo và Quản lý cấp trung trong phòng họp.
+3. **Quy trình thực tế đang diễn ra (Actual / Executed Process):** Hành vi thực sự của nhân viên trên màn hình máy tính, nhóm chat Zalo, sổ tay và dữ liệu log hệ thống.
+
+```mermaid
+flowchart LR
+    S1["Bước 1: Chuẩn bị &<br/>Rà soát Hồ sơ tĩnh<br/>(Desk Research)"] --> S2["Bước 2: Phỏng vấn sâu<br/>Đa tầng Quản trị<br/>(3-Tier Interviews)"]
+    S2 --> S3["Bước 3: Quan sát Hiện trường<br/>& Khảo sát Định lượng<br/>(Gemba Walk & Survey)"]
+    S3 --> S4["Bước 4: Hội thảo Liên phòng<br/>& Kiểm toán Dữ liệu<br/>(Workshop & Data Audit)"]
+    S4 --> S5["Bước 5: Chấm điểm Trưởng thành,<br/>Phân tích Gap & Chốt To-Be<br/>(Diagnostic Report)"]
+```
+
+#### Bảng 6 Phương pháp Thu thập Dữ liệu Thực địa
+
+| Phương pháp khảo sát | Đối tượng / Nguồn thu thập | Mục tiêu cốt lõi | Sai lầm phổ biến cần tránh (Survey Pitfalls) |
+| :--- | :--- | :--- | :--- |
+| **1. Nghiên cứu tài liệu & Hồ sơ tĩnh (*Document & Artifact Review*)** | Sơ đồ tổ chức, Quy chế tài chính, Ma trận DOA, Quy trình ISO, các mẫu file Excel, tờ trình giấy, hợp đồng đã ký. | Nắm khung pháp lý nội bộ, cấu trúc biểu mẫu (*Form Fields*) và quy định chính thức trước khi gặp nhân sự. | Tin 100% rằng doanh nghiệp đang chạy đúng như tài liệu ISO đã viết từ 3–5 năm trước. |
+| **2. Phỏng vấn sâu đa tầng (*3-Tier In-depth Interviews*)** | - **Tầng 1 (C-Level):** CEO *Ông Hoàng*, Kế toán trưởng *Bà Thảo*.<br>- **Tầng 2 (Middle Mgr):** *Anh Minh* (Mua hàng), *Anh Tuấn* (Sales), *Chị Hạnh* (HC-VT), *Anh Khoa* (IT).<br>- **Tầng 3 (End-users):** *Chị Lan*, *Bạn Hùng*, Thủ kho. | Khai thác tầm nhìn chiến lược, chỉ số đau đầu nhất của lãnh đạo, xung đột liên phòng ban và nỗi khổ nhập liệu của nhân viên. | Phỏng vấn nhân viên trước mặt sếp trực tiếp (nhân viên sẽ giấu điểm nghẽn và không dám nói thật về quy trình lỗi). |
+| **3. Đi thực tế hiện trường (*Gemba Walk / Job Shadowing*)** | Ngồi cạnh nhân viên tác nghiệp trực tiếp tại bàn làm việc, kho hàng, quầy lễ tân trong 1–2 ca làm việc thực tế. | Bắt tận tay các thao tác thừa (*Muda*), các file Excel "phiên bản ngầm", nhóm chat Zalo giao việc và cách xử lý ngoại lệ. | Chỉ đứng nhìn lướt qua hoặc báo trước quá kỹ khiến nhân viên "diễn" theo quy trình chuẩn. |
+| **4. Khảo sát bảng hỏi định lượng (*Quantitative Survey*)** | Phát phiếu khảo sát ẩn danh (thang đo Likert 1–5) cho toàn bộ 150 nhân viên Công ty A. | Đo lường diện rộng mức độ bức xúc về công cụ, thời gian lãng phí tìm kiếm tài liệu và điểm nghẽn phê duyệt. | Câu hỏi chung chung, quá dài (> 30 câu) hoặc bắt điền họ tên khiến kết quả bị thiên lệch. |
+| **5. Hội thảo Khai phá Liên phòng ban (*Cross-functional Discovery Workshop*)** | Đưa đại diện các phòng ban hay đổ lỗi cho nhau (VD: *Sales – Kho – Kế toán* hoặc *Mua hàng – IT – Kế toán*) vào cùng một bàn. | Vẽ trực tiếp luồng *End-to-End Swimlane* lên bảng trắng để giải quyết điểm gãy tại **ranh giới bàn giao (Handoff Points)**. | Để buổi workshop biến thành cuộc cãi vã đổ lỗi cá nhân thay vì tập trung vào lỗi thiết kế hệ thống. |
+| **6. Kiểm toán Nhật ký Hệ thống & Dữ liệu (*System Log & Data Audit*)** | Trích xuất dữ liệu thô từ phần mềm kế toán, CRM cũ, tổng đài VoIP, cây thư mục Google Drive/OneDrive và sổ công văn. | Đo lường chính xác **Tỷ lệ dữ liệu rác/trùng lặp**, thời gian chờ trung bình (*Wait Time*) và số lượng hồ sơ tồn đọng. | Đưa dữ liệu cũ chưa làm sạch (*Garbage In*) di chuyển thẳng sang phần mềm mới (*Garbage Out*). |
+
+---
+
+### 9.2. Bộ Công cụ Khảo sát Chuyên sâu theo 5 Phân hệ (5-Pillar Field Survey Toolkit)
+
+Dưới đây là **Cẩm nang Khảo sát Thực địa** chi tiết cho từng phân hệ trong 5 trụ cột Quản trị Doanh nghiệp, giúp Chuyên gia Tư vấn biết chính xác: **Hỏi ai câu gì – Thu thập chứng từ nào – Đo chỉ số Baseline nào – Nhận diện cờ đỏ (Red Flags) ra sao**.
+
+#### A. Khảo sát Phần 1: Quản lý Quy trình Hoạt động Doanh nghiệp (BPM & Workflow)
+
+| Hạng mục khảo sát | Nội dung chi tiết cần thực hiện tại doanh nghiệp |
+| :--- | :--- |
+| **Đối tượng phỏng vấn** | Giám đốc Vận hành (COO/CEO), Trưởng phòng Mua hàng (*Anh Minh*), Kế toán trưởng (*Bà Thảo*), Trưởng bộ phận Pháp chế/ISO, Chuyên viên tác nghiệp (*Chị Lan*). |
+| **5 Câu hỏi phỏng vấn cốt lõi** | 1. *"Hãy kể lại chính xác hành trình của một Đề nghị mua sắm hoặc Thanh toán gần nhất từ lúc phát sinh nhu cầu đến khi tiền ra khỏi tài khoản: Đi qua mấy người, mất bao nhiêu ngày?"*<br>2. *"Khi tờ trình bị trả lại, lý do phổ biến nhất là gì (sai biểu mẫu, thiếu chứng từ, vượt ngân sách hay sếp hỏi thêm thông tin)?"*<br>3. *"Có bao nhiêu trường hợp trong tháng qua phải 'lách quy trình' (mua trước, làm hồ sơ hợp thức hóa sau) và tại sao?"*<br>4. *"Làm sao người đề nghị biết hồ sơ của mình đang nằm ở bàn ai, hay phải nhắn Zalo/chạy sang tận bàn hỏi?"*<br>5. *"Khi một quy trình thay đổi (VD: đổi hạn mức duyệt), mất bao lâu để toàn công ty áp dụng đúng biểu mẫu mới?"* |
+| **Hồ sơ / Chứng từ cần thu thập** | - Danh mục toàn bộ quy trình hiện có (SOP, lưu đồ ISO) và bộ biểu mẫu Word/Excel đính kèm.<br>- **10 bộ hồ sơ thanh toán/mua sắm thực tế đã hoàn tất** (cả bản trơn tru lẫn bản bị trả đi trả lại nhiều lần).<br>- Chụp màn hình các luồng xin duyệt qua Email hoặc nhóm chat Zalo. |
+| **Chỉ số Baseline cần đo** | - **Total Cycle Time:** Tổng thời gian hoàn tất trung bình của 5 quy trình cốt lõi (Mua hàng, Tạm ứng/Thanh toán, Tuyển dụng, Nghỉ phép, Ký hợp đồng).<br>- **Hiệu suất dòng chảy (Flow Efficiency):** $\text{FE} = \frac{\text{Touch Time (Thời gian xử lý thực)}}{\text{Total Cycle Time}} \times 100\%$.<br>- **First-Time-Right Rate (FTR):** Tỷ lệ % hồ sơ được duyệt ngay lần đầu không bị trả lại (*Rework*). |
+| **Dấu hiệu Cờ đỏ (*Red Flags*)** | - Nhân viên phải nhập lại cùng một thông tin (Tên NCC, Số tiền, Mã hàng) từ 3 lần trở lên trên các file khác nhau.<br>- Tồn tại "luồng duyệt ngầm" qua miệng hoặc tin nhắn riêng trước khi trình ký chính thức.<br>- Không có quy định SLA thời gian phản hồi tối đa cho từng bước duyệt. |
+
+#### B. Khảo sát Phần 2: Quản lý Công việc, Dự án và Đánh giá Hiệu suất (Task, Project & KPI/OKR)
+
+| Hạng mục khảo sát | Nội dung chi tiết cần thực hiện tại doanh nghiệp |
+| :--- | :--- |
+| **Đối tượng phỏng vấn** | Ban Giám đốc, Trưởng phòng Nhân sự (HR Manager), Quản lý Dự án (PM), Trưởng các bộ phận chuyên môn và Nhân viên thực thi. |
+| **5 Câu hỏi phỏng vấn cốt lõi** | 1. *"Hàng ngày nhân viên nhận việc qua những kênh nào (Zalo, Email, Họp miệng, Phần mềm)? Tỷ lệ việc bị trôi hoặc quên không làm là bao nhiêu?"*<br>2. *"Khi một dự án bị trễ hạn, ban quản lý phát hiện ra sự chậm trễ đó trước khi trễ hay sau khi đã quá hạn?"*<br>3. *"Cuối tháng/quý, các trưởng phòng mất bao nhiêu ngày công để tổng hợp số liệu chấm điểm KPI cho nhân viên?"*<br>4. *"Điểm KPI hiện tại lấy từ dữ liệu hệ thống tự động hay do nhân viên tự điền Excel rồi sếp chấm bằng cảm tính?"*<br>5. *"Có hiện tượng nhân viên đạt 100% KPI cá nhân nhưng mục tiêu chung của công ty/dự án vẫn thất bại không?"* |
+| **Hồ sơ / Chứng từ cần thu thập** | - Bảng giao chỉ tiêu KPI/OKR đầu kỳ và Bảng chấm điểm KPI cuối kỳ của 3 phòng ban khác nhau.<br>- File Excel kế hoạch dự án (Gantt Chart / WBS), biên bản họp giao ban tuần và danh sách theo dõi đầu việc (*To-do List*).<br>- Quy chế tính lương thưởng 3P / thưởng hiệu suất hiện hành. |
+| **Chỉ số Baseline cần đo** | - **On-time Delivery Rate:** Tỷ lệ % công việc và mốc dự án (*Milestones*) hoàn thành đúng hạn.<br>- **Schedule & Cost Variance:** Độ lệch tiến độ và độ lệch chi phí trung bình của các dự án trong 6 tháng qua.<br>- **KPI Compilation Effort:** Số giờ công (Man-hours) tiêu tốn mỗi tháng chỉ để gom số liệu và họp chấm KPI. |
+| **Dấu hiệu Cờ đỏ (*Red Flags*)** | - Giao việc không rõ **Ai chịu trách nhiệm chính (Single Accountable - RACI)** và không có tiêu chí nghiệm thu (*Definition of Done*).<br>- 95% nhân viên đều đạt KPI loại A/Xuất sắc cuối kỳ do sếp ngại va chạm (*Leniency Bias*), không phản ánh đúng năng suất thực. |
+
+#### C. Khảo sát Phần 3: Quản lý Quan hệ Khách hàng (CRM – Marketing, Sales & Service)
+
+| Hạng mục khảo sát | Nội dung chi tiết cần thực hiện tại doanh nghiệp |
+| :--- | :--- |
+| **Đối tượng phỏng vấn** | Giám đốc Kinh doanh (*Anh Tuấn*), Trưởng phòng Marketing, Sales B2B (*Bạn Hùng*), Sales Admin, Đội Chăm sóc khách hàng / Bảo hành kỹ thuật. |
+| **5 Câu hỏi phỏng vấn cốt lõi** | 1. *"Khi có một Lead khách hàng mới từ Website/Facebook/Zalo đổ về, mất bao nhiêu phút để Sales gọi điện liên hệ lần đầu tiên?"*<br>2. *"Nếu hôm nay một nhân viên Sales chủ lực nghỉ việc đột ngột, công ty giữ lại được bao nhiêu % lịch sử trao đổi, báo giá và mối quan hệ của các khách hàng người đó đang chăm?"*<br>3. *"Mất bao lâu để Sales tạo xong một bản Báo giá và Hợp đồng chuẩn? Làm sao kiểm soát việc Sales tự ý giảm giá vượt khung cho khách?"*<br>4. *"Số liệu Dự báo doanh số (Sales Forecast) báo cáo cho CEO đầu tháng thường lệch bao nhiêu % so với doanh thu thực thu cuối tháng?"*<br>5. *"Khi khách hàng gọi điện khiếu nại hoặc yêu cầu bảo hành, nhân viên trực tổng đài có nhìn thấy ngay lịch sử mua hàng và hợp đồng của họ không?"* |
+| **Hồ sơ / Chứng từ cần thu thập** | - File Excel quản lý danh sách khách hàng (Lead/Contact/Deal) của 3 nhân viên Sales khác nhau.<br>- Mẫu Báo giá, Hợp đồng bán hàng, Chính sách chiết khấu và bảng tính hoa hồng Sales.<br>- Báo cáo phễu bán hàng (*Sales Pipeline*) và sổ theo dõi khiếu nại/bảo hành của bộ phận CSKH. |
+| **Chỉ số Baseline cần đo** | - **Speed-to-Lead:** Thời gian phản hồi Lead trung bình (phút/giờ).<br>- **Conversion Rate & Sales Cycle:** Tỷ lệ chuyển đổi qua từng bước phễu (*Lead → MQL → SQL → Quotation → Won*) và độ dài chu kỳ bán hàng (ngày).<br>- **Data Duplication & Loss Rate:** Tỷ lệ % dữ liệu khách hàng bị trùng lặp hoặc thiếu thông tin liên hệ cốt lõi. |
+| **Dấu hiệu Cờ đỏ (*Red Flags*)** | - Sales coi danh sách khách hàng là "tài sản riêng", lưu trên điện thoại/Zalo cá nhân và chống đối việc nhập lên hệ thống chung.<br>- Tình trạng tranh giành khách hàng (*Sale Conflict*) giữa các nhân viên do không có cơ chế kiểm tra trùng mã số thuế/số điện thoại. |
+
+#### D. Khảo sát Phần 4: Quản lý Nguồn lực, Tài sản và Văn bản Lưu trữ số (Resource, Asset & DMS)
+
+| Hạng mục khảo sát | Nội dung chi tiết cần thực hiện tại doanh nghiệp |
+| :--- | :--- |
+| **Đối tượng phỏng vấn** | Trưởng phòng Hành chính – Văn thư (*Chị Hạnh*), Trưởng bộ phận IT (*Anh Khoa*), Kế toán Tài sản cố định (*Bà Thảo*), Nhân viên các phòng ban. |
+| **5 Câu hỏi phỏng vấn cốt lõi** | 1. *"Khi cần đặt phòng họp, xe công tác hoặc thiết bị dùng chung, nhân viên đặt qua đâu? Có hay xảy ra cảnh hai đoàn cùng đứng trước cửa một phòng họp không?"*<br>2. *"Số lượng Laptop/Thiết bị trên sổ Khấu hao của Kế toán có khớp 100% với số máy thực tế đang nằm trên bàn nhân viên không? Đợt kiểm kê gần nhất mất bao nhiêu ngày?"*<br>3. *"Khi một nhân viên nghỉ việc, làm sao HR và IT biết chính xác người đó đang giữ những tài sản, thẻ từ và tài khoản phần mềm nào để thu hồi đủ?"*<br>4. *"Khi nhân viên cần tìm một Quy chế, Hợp đồng cũ hoặc Công văn năm ngoái, họ mất bao nhiêu phút để tìm được đúng bản gốc có dấu đỏ?"*<br>5. *"Có trường hợp nào nhân viên áp dụng nhầm bản quy định hoặc bảng giá đã hết hiệu lực vì tải nhầm file cũ trên nhóm chat không?"* |
+| **Hồ sơ / Chứng từ cần thu thập** | - Sổ theo dõi tài sản cố định, công cụ dụng cụ của Kế toán & File quản lý cấp phát thiết bị của IT/Hành chính.<br>- Sơ đồ cây thư mục lưu trữ hiện tại trên File Server / Google Drive / OneDrive và Sổ đăng ký công văn đi – đến.<br>- Biên bản bàn giao tài sản khi nhận việc/nghỉ việc và nhật ký sửa chữa, bảo trì máy móc. |
+| **Chỉ số Baseline cần đo** | - **Asset Discrepancy Rate:** Tỷ lệ % chênh lệch giữa sổ sách kế toán và kiểm kê thực tế hiện trường; tỷ lệ tài sản "mồ côi" không rõ người giữ.<br>- **Audit Duration:** Số ngày công cần thiết để hoàn thành một kỳ kiểm kê tài sản toàn công ty.<br>- **Document Retrieval Time:** Thời gian trung bình (phút) để tìm thấy một văn bản/hợp đồng theo yêu cầu đột xuất. |
+| **Dấu hiệu Cờ đỏ (*Red Flags*)** | - Tài sản không dán tem định danh (Barcode/QR) hoặc tem đã bong tróc; điều chuyển máy móc giữa các nhân viên tự phát không qua biên bản hệ thống.<br>- Tài liệu lưu trữ phân tán trên ổ cứng cá nhân; đặt tên file tùy tiện (`Hop_dong_final_v2_sua_lan_cuoi.docx`). |
+
+#### E. Khảo sát Phần 5: Quản lý Phê duyệt, Chữ ký số và Trung tâm Điều hành (Approval & Executive Cockpit)
+
+| Hạng mục khảo sát | Nội dung chi tiết cần thực hiện tại doanh nghiệp |
+| :--- | :--- |
+| **Đối tượng phỏng vấn** | Chủ tịch/CEO (*Ông Hoàng*), Ban Giám đốc, Thư ký/Trợ lý Ban Giám đốc, Kế toán trưởng (*Bà Thảo*), Văn thư đóng dấu (*Chị Hạnh*). |
+| **5 Câu hỏi phỏng vấn cốt lõi** | 1. *"Mỗi ngày CEO phải ký duyệt bao nhiêu tờ trình/văn bản? Khi CEO đi công tác nước ngoài hoặc bận họp cả ngày, các hồ sơ khẩn cấp được xử lý thế nào?"*<br>2. *"Công ty đã có Ma trận Phân quyền Phê duyệt (DOA) bằng văn bản chưa, hay việc lớn việc nhỏ từ vài trăm nghìn đồng đều phải đẩy lên tận bàn Giám đốc?"*<br>3. *"Các hợp đồng và tờ trình nội bộ hiện đang ký tươi đóng dấu đỏ hay đã dùng Chữ ký số (USB Token / Cloud CA)? Mất bao lâu cho khâu in ấn – trình ký – đóng dấu – scan lưu trữ?"*<br>4. *"Để chuẩn bị bộ tài liệu cho cuộc họp Giao ban/HĐQT sáng thứ Hai, các phòng ban phải mất bao nhiêu giờ làm báo cáo PowerPoint/Excel?"*<br>5. *"Sau cuộc họp giao ban, bao nhiêu % kết luận chỉ đạo của CEO có người theo dõi đến cùng, và bao nhiêu % bị lãng quên sau 2 tuần?"* |
+| **Hồ sơ / Chứng từ cần thu thập** | - Văn bản Quy định Phân quyền Phê duyệt (DOA) và Quy chế quản lý, sử dụng con dấu/chữ ký số.<br>- Bộ tài liệu họp giao ban tuần/tháng và Biên bản kết luận cuộc họp của 4 kỳ gần nhất.<br>- Thống kê số lượng văn bản ký giấy, chi phí in ấn, chuyển phát nhanh hợp đồng hàng tháng. |
+| **Chỉ số Baseline cần đo** | - **Executive Approval Turnaround Time:** Thời gian chờ lãnh đạo ký duyệt trung bình (giờ/ngày), đặc biệt khi lãnh đạo vắng mặt tại văn phòng.<br>- **Dashboard Readiness Latency:** Độ trễ từ khi dữ liệu phát sinh đến khi lên báo cáo điều hành của CEO (Theo thời gian thực hay trễ 5–10 ngày).<br>- **Directive Completion Rate:** Tỷ lệ % các chỉ đạo của Ban Giám đốc sau cuộc họp được thực thi đúng hạn. |
+| **Dấu hiệu Cờ đỏ (*Red Flags*)** | - **"Nút cổ chai tại đỉnh tháp"**: CEO bị biến thành "cỗ máy ký giấy" cho các khoản chi lặt vặt vì thiếu cơ chế DOA và Ủy quyền số (*Delegation*).<br>- Lãnh đạo ký nháy qua Zalo rồi về ký giấy bổ sung sau, hoặc giao USB Token chữ ký số của Giám đốc cho kế toán/văn thư cầm giữ (rủi ro pháp lý nghiêm trọng). |
+
+---
+
+### 9.3. Mẫu Bảng hỏi Khảo sát Định lượng Dành cho Nhân viên & Quản lý (25 Câu hỏi Thang đo Likert 1–5)
+
+Bảng hỏi này được thiết kế để phát ẩn danh qua biểu mẫu điện tử cho toàn bộ nhân sự trước khi triển khai dự án. Người trả lời chấm điểm từng nhận định theo thang đo từ **1 đến 5**:
+- **1 điểm:** Hoàn toàn không đồng ý (Rất tệ / Thủ công hoàn toàn)
+- **2 điểm:** Không đồng ý (Còn nhiều bất cập)
+- **3 điểm:** Trung lập / Bình thường (Bán tự động, lúc được lúc không)
+- **4 điểm:** Đồng ý (Khá tốt, đã chuẩn hóa phần lớn)
+- **5 điểm:** Hoàn toàn đồng ý (Xuất sắc / Tự động hóa & Liên thông 100%)
+
+| Mã câu | Phân hệ | Nội dung nhận định khảo sát (Chấm điểm từ 1 đến 5) |
+| :---: | :--- | :--- |
+| **Q01** | **Phần 1: BPM** | Các quy trình làm việc liên phòng ban tại công ty đã được quy định rõ ràng, tôi luôn biết bước tiếp theo hồ sơ sẽ chuyển cho ai. |
+| **Q02** | **Phần 1: BPM** | Khi gửi một đề nghị/tờ trình, tôi có thể theo dõi trực tuyến theo thời gian thực xem hồ sơ đang nằm ở bước nào mà không cần nhắn tin hỏi. |
+| **Q03** | **Phần 1: BPM** | Tôi không phải nhập đi nhập lại cùng một thông tin trên nhiều file Word/Excel hoặc phần mềm khác nhau khi thực hiện một quy trình. |
+| **Q04** | **Phần 1: BPM** | Mỗi bước xử lý trong quy trình đều có cam kết thời gian tối đa (SLA) rõ ràng và hệ thống tự động nhắc việc khi sắp trễ hạn. |
+| **Q05** | **Phần 1: BPM** | Hồ sơ/đề nghị của tôi hiếm khi bị trả lại do dùng sai biểu mẫu cũ hoặc thiếu các trường thông tin bắt buộc. |
+| **Q06** | **Phần 2: Task/KPI** | Mọi công việc tôi được giao đều tập trung trên một hệ thống duy nhất, có người chịu trách nhiệm chính, hạn chót và tiêu chí nghiệm thu rõ ràng. |
+| **Q07** | **Phần 2: Task/KPI** | Tôi không bị thất lạc hoặc quên đầu việc do tin nhắn giao việc bị trôi trên các nhóm chat (Zalo/Messenger). |
+| **Q08** | **Phần 2: Task/KPI** | Trong các dự án tôi tham gia, tiến độ, đường găng và khối lượng công việc của các thành viên luôn được hiển thị minh bạch. |
+| **Q09** | **Phần 2: Task/KPI** | Chỉ tiêu KPI/OKR của tôi gắn kết rõ ràng với mục tiêu phòng ban và được đo lường tự động từ kết quả công việc thực tế trên hệ thống. |
+| **Q10** | **Phần 2: Task/KPI** | Cuối tháng/quý, tôi và quản lý không mất nhiều thời gian ngồi cộng sổ Excel thủ công hay tranh cãi cảm tính về điểm số KPI. |
+| **Q11** | **Phần 3: CRM** | Toàn bộ thông tin khách hàng, lịch sử gọi điện, báo giá và hợp đồng đều được lưu trữ tập trung trên CRM (Hồ sơ khách hàng 360 độ). |
+| **Q12** | **Phần 3: CRM** | Khi có khách hàng tiềm năng (Lead) mới, hệ thống tự động phân bổ ngay cho Sales phụ trách và kiểm soát không để trùng lặp khách hàng. |
+| **Q13** | **Phần 3: CRM** | Việc tạo báo giá, hợp đồng và kiểm tra tồn kho/công nợ khách hàng được thực hiện nhanh chóng nhờ liên thông giữa CRM và Kế toán/Kho. |
+| **Q14** | **Phần 3: CRM** | Khi một nhân viên kinh doanh nghỉ việc hoặc chuyển vị trí, người tiếp nhận có thể nắm bắt ngay 100% lịch sử khách hàng mà không bị đứt gãy. |
+| **Q15** | **Phần 3: CRM** | Mọi yêu cầu bảo hành, hỗ trợ hoặc khiếu nại của khách hàng đều được ghi nhận thành Ticket có cam kết thời gian phản hồi (SLA). |
+| **Q16** | **Phần 4: Tài sản/DMS** | Tôi có thể kiểm tra lịch trống và đặt phòng họp, xe công tác hoặc thiết bị dùng chung trực tuyến mà không bao giờ bị trùng lịch. |
+| **Q17** | **Phần 4: Tài sản/DMS** | Mọi tài sản, máy móc tôi đang sử dụng đều có mã định danh (QR/Barcode) và biên bản bàn giao điện tử rõ ràng trên hệ thống. |
+| **Q18** | **Phần 4: Tài sản/DMS** | Khi thiết bị hỏng hóc, tôi có thể gửi yêu cầu sửa chữa/bảo trì nhanh chóng và theo dõi được lịch sử bảo dưỡng của thiết bị đó. |
+| **Q19** | **Phần 4: Tài sản/DMS** | Tôi có thể tìm thấy bất kỳ quy chế, biểu mẫu chuẩn, công văn hoặc hợp đồng nào mình được phân quyền chỉ trong vòng dưới 1 phút. |
+| **Q20** | **Phần 4: Tài sản/DMS** | Tôi luôn chắc chắn văn bản/quy định mình đang tra cứu trên cổng tri thức là phiên bản mới nhất đang có hiệu lực pháp lý. |
+| **Q21** | **Phần 5: Phê duyệt** | Quy định phân quyền phê duyệt (DOA) của công ty rất rõ ràng; các khoản chi/đề xuất trong hạn mức được duyệt nhanh mà không bị dồn ứ. |
+| **Q22** | **Phần 5: Phê duyệt** | Lãnh đạo có thể phê duyệt tờ trình và ký số hợp đồng/văn bản ngay trên điện thoại di động kể cả khi đang đi công tác. |
+| **Q23** | **Phần 5: Phê duyệt** | Khi người có thẩm quyền phê duyệt nghỉ phép/vắng mặt, hệ thống có cơ chế ủy quyền tự động để hồ sơ của tôi không bị "đóng băng". |
+| **Q24** | **Phần 5: Phê duyệt** | Số liệu báo cáo phục vụ các cuộc họp giao ban luôn được cập nhật tự động theo thời gian thực, không phải mất hàng ngày làm file báo cáo thủ công. |
+| **Q25** | **Phần 5: Phê duyệt** | Các kết luận và chỉ đạo của Ban Giám đốc sau mỗi cuộc họp đều được chuyển thành nhiệm vụ cụ thể và theo dõi tiến độ đến khi hoàn tất. |
+
+> **Quy tắc Chấm điểm & Diễn giải Kết quả Bảng hỏi (Tổng điểm tối đa: 125 điểm / Điểm trung bình: 1.0 – 5.0):**
+> - **Điểm trung bình 1.0 – 1.9 (Tổng 25 – 49 điểm) → Mức 1 (Thủ công & Tự phát):** Khủng hoảng vận hành, phụ thuộc hoàn toàn vào giấy tờ, trí nhớ và nhóm chat; cần tái cấu trúc và chuẩn hóa quy trình ngay lập tức.
+> - **Điểm trung bình 2.0 – 2.9 (Tổng 50 – 74 điểm) → Mức 2 (Phân mảnh & Ốc đảo số):** Đã có công cụ rời rạc (Excel, phần mềm đơn lẻ) nhưng đứt gãy liên phòng ban; ưu tiên hợp nhất nền tảng (*Unified Workspace*).
+> - **Điểm trung bình 3.0 – 3.7 (Tổng 75 – 94 điểm) → Mức 3 (Chuẩn hóa & Tập trung):** Đã số hóa được các quy trình lõi trên nền tảng chung; cần đẩy mạnh tích hợp sâu (API) và tự động hóa SLA/KPI.
+> - **Điểm trung bình 3.8 – 4.4 (Tổng 95 – 110 điểm) → Mức 4 (Liên thông & Quản trị Định lượng):** Dữ liệu chảy tự động End-to-End, lãnh đạo điều hành bằng Realtime Cockpit.
+> - **Điểm trung bình 4.5 – 5.0 (Tổng 111 – 125 điểm) → Mức 5 (Tối ưu hóa Thông minh & AI-Driven):** Vận hành dự báo, khai phá quy trình tự động (*Process Mining*) và trợ lý AI toàn diện.
+
+---
+
+### 9.4. Ma trận Đánh giá Mức độ Trưởng thành Vận hành Số (Enterprise Management Maturity Matrix – 5 Cấp độ)
+
+Sau khi tổng hợp dữ liệu từ Phỏng vấn, Gemba Walk và Bảng hỏi định lượng, Chuyên gia Tư vấn định vị doanh nghiệp trên **Ma trận Trưởng thành Vận hành Số 5 Cấp độ** (tham chiếu chuẩn CMMI) như sau:
+
+| Trụ cột Vận hành | Cấp độ 1: Tự phát & Thủ công (*Ad-hoc / Chaotic*) | Cấp độ 2: Phân mảnh & Ốc đảo (*Fragmented / Siloed*) | Cấp độ 3: Chuẩn hóa & Tập trung (*Standardized & Centralized*) | Cấp độ 4: Liên thông & Định lượng (*Integrated & Quantitative*) | Cấp độ 5: Tối ưu hóa & Tự hành AI (*Optimizing & AI-Driven*) |
+| :--- | :--- | :--- | :--- | :--- | :--- |
+| **Phần 1: Quy trình (BPM)** | Quy trình truyền miệng, giấy tờ tự do; không có lưu đồ; mạnh ai nấy làm. | Có văn bản quy trình ISO trên giấy/Word nhưng thực tế chạy qua Email/Zalo rời rạc. | Số hóa 100% quy trình lõi lên e-Workflow (BPMN 2.0) với e-Form động và phân nhánh điều kiện. | Tích hợp BPM xuyên hệ thống (CRM – ERP – HRM); đo lường SLA tự động, cảnh báo và leo thang (*Escalation*). | Khai phá quy trình tự động (*Process Mining*), kết hợp Robot RPA và AI Agent tự động tối ưu điểm nghẽn. |
+| **Phần 2: Công việc, Dự án & KPI** | Giao việc qua miệng/chat; không rõ deadline; đánh giá nhân sự cuối năm hoàn toàn cảm tính. | Quản lý việc trên Excel/Trello rời rạc từng nhóm; chấm KPI thủ công trên bảng tính cuối tháng. | Quản lý Task/Dự án tập trung (Kanban/Gantt/WBS); cây mục tiêu BSC – OKR/KPI minh bạch toàn công ty. | Điểm KPI tự động tính theo thời gian thực từ dữ liệu hoàn thành Task/Quy trình/CRM và đẩy thẳng sang bảng lương 3P. | AI tự động dự báo rủi ro trễ hạn dự án, gợi ý cân bằng tải nguồn lực (*Auto Resource Leveling*) và chống thiên kiến KPI. |
+| **Phần 3: Khách hàng (CRM)** | Sales tự giữ danh bạ khách hàng trên sổ tay/điện thoại cá nhân; mất Sales là mất khách. | Lưu danh sách khách hàng trên Excel dùng chung hoặc CRM đơn lẻ không gắn với Kho và Kế toán. | Hồ sơ Khách hàng 360 tập trung; chuẩn hóa phễu Sales Pipeline, tự động chia Lead và quản lý Ticket CSKH theo SLA. | Liên thông khép kín *Lead-to-Cash* (CRM ↔ Kho ↔ Kế toán ↔ Dự án ↔ Hợp đồng điện tử); tích hợp Tổng đài VoIP & Zalo OA/ZNS. | AI Lead Scoring dự báo xác suất chốt Deal, gợi ý hành động tiếp theo (*Next-Best-Action*) và cảnh báo sớm khách hàng sắp rời bỏ (*Churn Prediction*). |
+| **Phần 4: Nguồn lực, Tài sản & DMS** | Đặt phòng họp qua miệng; tài sản không mã hóa; công văn giấy lưu tủ sắt, tìm kiếm mất hàng giờ. | Quản lý tài sản và công văn trên file Excel của Hành chính; lưu file trên Google Drive không phân quyền chuẩn. | Đặt lịch tài nguyên trực tuyến; định danh tài sản bằng QR Code; lưu trữ văn bản số DMS chuẩn Nghị định 30 & phân quyền RBAC. | Đồng bộ vòng đời tài sản với Khấu hao Kế toán và Bảo trì phòng ngừa (CMMS); tra cứu toàn văn OCR (*Full-text Search*) dưới 3 giây. | IoT/RFID theo dõi vị trí và sức khỏe thiết bị thời gian thực; trợ lý AI (RAG/Enterprise Search) hỏi đáp trực tiếp trên kho tri thức và hợp đồng. |
+| **Phần 5: Phê duyệt & Điều hành** | Trình ký giấy 100%; sếp đi công tác là đình trệ; họp hành ngập trong báo cáo giấy làm thủ công. | Duyệt qua Email/Zalo không có giá trị kiểm toán; báo cáo điều hành tổng hợp bằng Excel trễ 5–7 ngày. | Hộp thư phê duyệt hợp nhất (*Unified Inbox*) trên Mobile theo Ma trận DOA; áp dụng chữ ký số nội bộ và e-Cabinet. | Ký số pháp nhân từ xa (*Cloud CA*) bằng sinh trắc học; Trung tâm Chỉ huy *CEO Cockpit* thời gian thực và Sổ theo dõi chỉ đạo (*Directive Tracker*). | Hệ thống Hỗ trợ Quyết định Thông minh (*AI Executive Copilot*) tự động phát hiện bất thường (*Anomaly Detection*) và mô phỏng kịch bản kinh doanh (*What-if Analysis*). |
+
+---
+
+### 9.5. Phân tích Khoảng cách (Gap Analysis) & Báo cáo Chẩn đoán Thực nghiệm tại Công ty A (As-Is vs. To-Be Diagnostic Report)
+
+Áp dụng toàn bộ bộ công cụ khảo sát trên vào **Công ty A** (150 nhân sự), đội dự án đã thực hiện phỏng vấn 18 nhân sự chủ chốt, đi Gemba Walk 3 ngày tại phòng Kinh doanh – Mua hàng – Kho – Kế toán, thu thập 128 phiếu khảo sát định lượng và kiểm toán dữ liệu trong 6 tháng.
+
+#### 1. Kết quả Chẩn đoán Tổng thể (Diagnostic Scorecard của Công ty A)
+- **Điểm khảo sát định lượng trung bình (As-Is):** **46.5 / 125 điểm** (Trung bình **1.86 / 5.0**).
+- **Xếp hạng mức độ trưởng thành hiện tại (As-Is Maturity):** **Cấp độ 1.8** (Đang chuyển giao giữa *Mức 1 – Thủ công tự phát* và *Mức 2 – Phân mảnh ốc đảo số*).
+- **Mục tiêu thiết kế (To-Be Target sau 6 tháng):** Đạt **Cấp độ 3.8 – 4.0** (*Liên thông End-to-End & Quản trị Định lượng trên một nền tảng hợp nhất*).
+
+#### 2. Bảng Phân tích Khoảng cách (Gap Analysis) và Đối chiếu Thực nghiệm Trước – Sau tại Công ty A
+
+| Phân hệ & Chủ sở hữu | Hiện trạng Trước Chuyển đổi số (As-Is Baseline – Khảo sát Thực địa) | Giải pháp Thiết kế Tương lai (To-Be Solution Architecture) | Kết quả Thực nghiệm Sau 6 Tháng Vận hành (Verified Impact) |
+| :--- | :--- | :--- | :--- |
+| **Phần 1: Quy trình (BPM)**<br>*(Anh Minh – Mua hàng & Bà Thảo – Kế toán)* | - Quy trình mua sắm và tạm ứng chạy bằng giấy + nhắn Zalo.<br>- **Cycle Time mua hàng:** Trung bình **5.2 ngày** (*Flow Efficiency* chỉ đạt **1.1%** – 20 phút xử lý thực trên 3.200 phút chờ đợi).<br>- **Tỷ lệ hồ sơ bị trả lại (Rework):** **38%** do thiếu báo giá cạnh tranh hoặc sai mẫu đề nghị. | - Thiết kế lưu đồ BPMN 2.0 trên e-Workflow với e-Form động bắt buộc đính kèm đủ 3 báo giá khi > 20 triệu đồng.<br>- Tự động kiểm tra ngân sách phòng ban (*Budget Check*) và gắn SLA 4 giờ/bước duyệt. | - **Cycle Time mua hàng:** Giảm xuống còn **4.5 giờ** (Rút ngắn **96%** thời gian chờ).<br>- **Tỷ lệ First-Time-Right:** Tăng từ 62% lên **98.5%**.<br>- Xóa bỏ hoàn toàn tình trạng nhập liệu lặp lại giữa Mua hàng và Kế toán. |
+| **Phần 2: Công việc, Dự án & KPI**<br>*(Ban Giám đốc & HR)* | - Giao việc qua 24 nhóm chat Zalo khác nhau; trung bình **27% đầu việc bị trôi hoặc trễ hạn**.<br>- Dự án triển khai cho khách hàng B2B không có biểu đồ Gantt/WBS chung.<br>- Cuối tháng mất **5 ngày công/phòng ban** để gom Excel chấm KPI cảm tính. | - Tự động khởi tạo Dự án mẫu (WBS/Gantt) ngay khi chốt Deal CRM.<br>- Mọi Task đều gắn RACI và tiêu chí nghiệm thu.<br>- Liên kết trực tiếp kết quả Task, SLA quy trình và Doanh thu thực thu vào công thức tự động tính KPI & Lương 3P. | - **Tỷ lệ hoàn thành công việc đúng hạn:** Tăng từ 73% lên **94%**.<br>- **Thời gian tổng hợp & chốt KPI cuối tháng:** Giảm từ 5 ngày xuống còn **0 giờ** (Tự động 100% theo thời gian thực).<br>- Triệt tiêu tranh cãi cảm tính cuối kỳ. |
+| **Phần 3: Khách hàng (CRM)**<br>*(Anh Tuấn & Bạn Hùng – Sales B2B)* | - 100% Sales lưu khách hàng trên Excel cá nhân; tỷ lệ trùng khách giữa các Sales là **18%**.<br>- **Speed-to-Lead:** Mất trung bình **4.5 giờ** mới gọi cho khách mới.<br>- Soạn báo giá và hợp đồng thủ công mất **1.5 ngày**; từng mất 2 khách hàng lớn khi 1 Sales nghỉ việc. | - Hợp nhất dữ liệu về CRM 360 độ; tự động thu thập Lead đa kênh và chia Round-Robin kèm SLA gọi trong 15 phút.<br>- Tích hợp Tổng đài VoIP *Click-to-Call*, Zalo ZNS và trình tự động sinh Báo giá/Hợp đồng từ danh mục giá chuẩn. | - **Speed-to-Lead:** Giảm xuống dưới **12 phút**.<br>- **Thời gian lập Báo giá & Hợp đồng:** Giảm từ 1.5 ngày xuống còn **15 phút**.<br>- **Tỷ lệ chốt Deal (Win Rate) B2B:** Tăng **28%** (Điển hình là thắng thầu dự án 800 triệu của Công ty XYZ). |
+| **Phần 4: Nguồn lực, Tài sản & DMS**<br>*(Chị Hạnh – HC & Anh Khoa – IT)* | - Trùng lịch phòng họp 4–5 lần/tháng.<br>- Lệch **14% số lượng thiết bị CNTT** giữa sổ Kế toán và thực tế; kiểm kê cuối năm mất **10 ngày**.<br>- Tìm kiếm một hợp đồng hoặc công văn cũ trong tủ sắt mất trung bình **25–40 phút**. | - Cổng Booking trực tuyến phòng họp/xe công tác.<br>- Dán mã QR Code cho 100% tài sản, bàn giao và thu hồi điện tử liên thông Kế toán – HR – IT.<br>- Số hóa kho văn bản DMS chuẩn Nghị định 30 có bóc tách OCR và kiểm soát phiên bản (*Version Control*). | - **Xung đột lịch phòng họp/xe:** Giảm về **0%**.<br>- **Thời gian kiểm kê tài sản toàn công ty:** Giảm từ 10 ngày xuống còn **1.5 ngày** bằng quét QR trên điện thoại; khớp sổ kế toán **100%**.<br>- **Thời gian tra cứu văn bản/hợp đồng:** Dưới **5 giây**. |
+| **Phần 5: Phê duyệt & Điều hành**<br>*(CEO Ông Hoàng)* | - *Ông Hoàng* phải ký giấy trung bình **45 tờ trình và hợp đồng/ngày**; khi đi công tác là hồ sơ tồn đọng hàng loạt.<br>- Họp giao ban sáng thứ Hai mất 2 giờ chỉ để nghe đọc báo cáo số liệu cũ của tuần trước.<br>- **40% chỉ đạo trong cuộc họp** bị trôi sau 2 tuần. | - Áp dụng Ma trận Phân quyền DOA tự động trên *Unified Approval Inbox* kèm cơ chế Ủy quyền khi vắng mặt.<br>- Tích hợp Chữ ký số từ xa **Cloud CA** ký hợp đồng trên di động bằng FaceID.<br>- Xây dựng **CEO Cockpit** thời gian thực, phòng họp không giấy *e-Cabinet* và *Directive Tracker*. | - **Khối lượng giấy tờ CEO phải ký trực tiếp:** Giảm **70%** nhờ phân quyền DOA cho cấp trưởng phòng; thời gian CEO duyệt hồ sơ khẩn trên Mobile chỉ còn **< 30 phút**.<br>- **Tỷ lệ thực thi chỉ đạo sau họp (Directive Tracker):** Đạt **96%** đúng hạn. |
+
+#### 3. Ma trận Ưu tiên Triển khai Sau Khảo sát (Prioritization Matrix: Impact vs. Feasibility)
+
+Để tránh rủi ro "ôm đồm triển khai cùng lúc 50 tính năng gây sốc văn hóa", báo cáo khảo sát phân loại các hạng mục của Công ty A thành **3 Nhóm Ưu tiên (3 Waves)** dựa trên **Mức độ Tác động (Business Impact)** và **Tính Khả thi / Độ dễ triển khai (Feasibility)**:
+
+1. **Nhóm 1 – Thắng lợi nhanh (Quick Wins: Tác động cao, Dễ triển khai – Tháng 1 đến Tháng 2):**
+   - Số hóa ngay **Top 5 Quy trình Phê duyệt nội bộ gây tắc nghẽn nhất** (Đề nghị thanh toán/tạm ứng, Đề nghị mua sắm, Xin nghỉ phép/công tác, Trình ký hợp đồng, Đặt phòng họp/xe) lên *Unified Approval Inbox* gắn Ma trận DOA.
+   - Đưa toàn bộ công việc giao ban và chỉ đạo của CEO (*Directive Tracker*) lên hệ thống Quản lý Công việc tập trung; cấm giao việc mới qua nhóm chat Zalo.
+   - Xây dựng Kho lưu trữ văn bản chuẩn (DMS) cho các Quy chế, Biểu mẫu và Hợp đồng đang còn hiệu lực.
+2. **Nhóm 2 – Chuyển đổi Cốt lõi (Core Transformation: Tác động rất cao, Độ phức tạp trung bình – Tháng 3 đến Tháng 4):**
+   - Triển khai **CRM 360 độ** cho toàn bộ khối Kinh doanh & CSKH; tích hợp Tổng đài VoIP, Zalo OA/ZNS và liên thông kiểm tra tồn kho/công nợ với phần mềm Kế toán.
+   - Triển khai **Quản lý Dự án (WBS/Gantt)** tự động khởi tạo từ Deal Won trên CRM và quy trình **Quản lý Tài sản bằng mã QR Code** cho toàn bộ thiết bị.
+   - Tích hợp **Chữ ký số từ xa (Cloud CA)** để ký hợp đồng điện tử B2B với khách hàng và nhà cung cấp.
+3. **Nhóm 3 – Quản trị Định lượng & Tối ưu hóa (Strategic Optimization: Tác động chiến lược, Đòi hỏi dữ liệu ổn định – Tháng 5 đến Tháng 6):**
+   - Vận hành hệ thống **Tự động chấm điểm BSC – KPI/OKR** lấy dữ liệu trực tiếp từ Phần 1, 2, 3, 4 và kết nối tự động với bảng tính **Lương thưởng 3P**.
+   - Ra mắt **Trung tâm Chỉ huy Điều hành (CEO Cockpit)** thời gian thực, áp dụng Phân tích Khai phá Quy trình (*Process Mining*) để liên tục cắt giảm các bước thừa trong vận hành doanh nghiệp.
